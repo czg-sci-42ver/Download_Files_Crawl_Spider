@@ -5,7 +5,9 @@ BOT_NAME = 'zipfiles'
 SPIDER_MODULES = ['zipfiles.spiders']
 NEWSPIDER_MODULE = 'zipfiles.spiders'
 ITEM_PIPELINES = {'zipfiles.pipelines.ZipfilesPipeline': 1}
-FILES_STORE = 'downloads'
+# FILES_STORE = 'downloads'
+# FILES_STORE = r'/home/czg/Download_Files_Crawl_Spider/test'
+FILES_STORE = r'/home/czg/python_learning/mul_links/mul_links/spiders/download'
 DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8',
     'Accept-Language': 'en',
@@ -16,6 +18,6 @@ DEFAULT_REQUEST_HEADERS = {
 
 ROBOTSTXT_OBEY = True
 
-# Slowdown the download speed so that site is not 
+# Slowdown the download speed so that site is not
 # overloaded with lot of requests
 # AUTOTHROTTLE_ENABLED = True

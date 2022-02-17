@@ -1,7 +1,13 @@
+# git@github.com:czg-sci-42ver/Download_Files_Crawl_Spider.git
+# https://www.youtube.com/watch?v=CpvkCzd2O6A
+
+# must add correct header DEFAULT_REQUEST_HEADERS in `settings.py`
+
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from zipfiles.items import ZipfilesItem
+
 
 class NirsoftSpider(CrawlSpider):
     name = 'nirsoft'
@@ -9,7 +15,8 @@ class NirsoftSpider(CrawlSpider):
     start_urls = ['http://www.nirsoft.net/']
 
     rules = (
-        Rule(LinkExtractor(allow=r'utils/'), callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=r'utils/'),
+             callback='parse_item', follow=True),
     )
 
     def parse_item(self, response):
@@ -18,7 +25,9 @@ class NirsoftSpider(CrawlSpider):
         file_extension = file_url.split('.')[-1]
         if file_extension not in ('zip', 'exe', 'msi'):
             return
+
         item = ZipfilesItem()
+
         item['file_urls'] = [file_url]
         item['original_file_name'] = file_url.split('/')[-1]
         yield item
